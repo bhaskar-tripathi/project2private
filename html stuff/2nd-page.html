@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<style>
+  body {
+    background-image: url('https://cdn.pixabay.com/photo/2016/03/26/22/21/books-1281581_1280.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+</style>
+
+<body>
+
+  <div class="jumbotron jumbotron-fluid bg-warning">
+    <div class="container">
+      <h1 class="display-4">ROUND TABLE</h1>
+      <p class="lead">WELCOME TO ROUND TABLE TO SEARCH BOOK'S COMMENTS</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Type Book Title" aria-label="Recipient's username"
+        aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary bg-primary text-white" type="button" id="button-addon2">Search</button>
+      </div>
+    </div>
+
+
+<!-- book information will be here thru handlebars -->
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{leInfo.imageLinks.thumbnail}}" class="card-img" alt="Image">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h4 class="card-title">Title: {{leInfo.Title}}</h4>
+        <h5>{{leInfo.subtitle}}</h5>
+        <p class="card-text">By: {{leInfo.authors}}</p>
+        <p class="card-text">Published in the year {{leInfo.publishedDate}} by: {{leInfo.publisher}}</p>
+        <p class="card-text">{{leInfo.description}}</p>
+        {{#each leInfo.industryIdentifiers}}
+        <!-- ask dennis how i can loop through each individual industry identifier because its an array -->
+        <p class="card-text">Identifier type: {{leInfo.industryIdentifiers[].type}}: {{leInfo.industryIdentifiers.[]identifier</p>
+              {{/each}}
+          <h4 class="card-title">Book Length: {{leInfo.pageCount}} pages</h4>
+          <h4 class="card-title">Average Rating: {{leInfo.averageRating}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="card">
+      <div class="row ">
+        <div class="col">
+          <div class="card-body">
+            <h5 class="card-header">Reviews From Our Users</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+              content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="card">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Example textarea</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Add a comment?</textarea>
+            <button class="btn btn-outline-secondary bg-primary text-white" type="button" id="button-addon2">Submit</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+</body>
+
+</html>

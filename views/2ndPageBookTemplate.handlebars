@@ -1,0 +1,22 @@
+    <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{leInfo.imageLinks.thumbnail}}" class="card-img" alt="Image">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title">Title: {{leInfo.Title}}</h4>
+            <h5>{{leInfo.subtitle}}</h5>
+            <p class="card-text">By: {{leInfo.authors}}</p>
+            <p class="card-text">Published in the year {{leInfo.publishedDate}} by: {{leInfo.publisher}}</p>
+            <p class="card-text">{{leInfo.description}}</p>
+            {{!-- {{#each leInfo.industryIdentifiers}}
+            <!-- ask dennis how i can loop through each individual industry identifier because its an array -->
+            <p class="card-text">Identifier type: {{leInfo.industryIdentifiers[].type}}: {{leInfo.industryIdentifiers.[]identifier</p>
+                  {{/each}} --}}
+              <h4 class="card-title">Book Length: {{leInfo.pageCount}} pages</h4>
+              <h4 class="card-title">Average Rating: {{leInfo.averageRating}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
