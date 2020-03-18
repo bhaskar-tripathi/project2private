@@ -1,3 +1,78 @@
+{{!-- 
+
+<div class="container d-flex">
+  <div class="row  align-content-center">
+    <div class="card  border-secondary p-2 m-3 col-md-8 mr-auto">
+
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{leInfo.imageLinks.thumbnail}}" class="card-img-top" style="width: 16rem;" alt="BookCover">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="card-body">
+              <h5 class="card-title">{{leInfo.title}}</h5>
+              <p class="card-text">{{leInfo.description}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              {{#each leInfo.authors}}
+              <li class="list-group-item">By: {{this}}</li>
+              {{/each}}
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link" id="viewBook-button"
+                DATA-isbn={{leInfo.industryIdentifiers.[0].identifier}}>Open
+                Book</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+</div> --}}
+
+
+<div class="modal fade" id="bookViewerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mountain View</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div id="viewerCanvas" style="width: 100%; height: 600px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="jumbotron jumbotron-fluid bg-warning" >
+    <div class="container">
+      <h1 class="display-4" style="padding-top: 5px;">ROUND TABLE</h1>
+      <p class="lead">WELCOME TO ROUND TABLE TO SEARCH BOOK'S COMMENTS</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Type Book Title" aria-label="Recipient's username"
+        aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary bg-primary text-white" type="button" id="button-addon2">Search</button>
+      </div>
+    </div>
+    <!-- book information will be here thru handlebars -->
     <div class="card mb-3">
       <div class="row no-gutters">
         <div class="col-md-4">
@@ -10,13 +85,59 @@
             <p class="card-text">By: {{leInfo.authors}}</p>
             <p class="card-text">Published in the year {{leInfo.publishedDate}} by: {{leInfo.publisher}}</p>
             <p class="card-text">{{leInfo.description}}</p>
-            {{!-- {{#each leInfo.industryIdentifiers}}
             <!-- ask dennis how i can loop through each individual industry identifier because its an array -->
-            <p class="card-text">Identifier type: {{leInfo.industryIdentifiers[].type}}: {{leInfo.industryIdentifiers.[]identifier</p>
-                  {{/each}} --}}
               <h4 class="card-title">Book Length: {{leInfo.pageCount}} pages</h4>
               <h4 class="card-title">Average Rating: {{leInfo.averageRating}}</h4>
+              <a href="#" class="card-link" id="viewBook-button"
+                DATA-isbn={{leInfo.industryIdentifiers.[0].identifier}}>Open
+                Book</a>
           </div>
         </div>
       </div>
     </div>
+    <div class="card">
+      <div class="row ">
+        <div class="col">
+          <div class="card-body">
+            <h5 class="card-header">Reviews From Our Users</h5>
+            <p class="card-text">{{ID}}</p>
+            <p class="card-text">{{comments}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="card">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Example textarea</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Add a comment?</textarea>
+                        <input class="form-control" id="pName" rows="3">
+            <button class="btn btn-outline-secondary bg-primary text-white" type="button" data-id={{ID}}
+              id="comupd-button">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <tbody>
+        {{#each book}}
+        <ul>
+            <li>
+                <div class="row mb-4">
+                <div class="card col-sm-3" style=" height: 500px;">
+                <img src="{{imagelink}}" class="card-img-top" height="300px" alt="bookimage">
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        <p class="card-text">{{subtitle}}</p>
+                        <button class="btn btn-primary mybutton" DATA-ID={{addsql}}>ADD</button>
+                        <button class="btn btn-primary mybutton" DATA-ID={{openDetailPage}}>OPEN</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        {{/each}}
+        </div>
+    </div>
+</tbody>

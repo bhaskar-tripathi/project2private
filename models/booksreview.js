@@ -16,11 +16,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     rating: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      },
-      book_id: DataTypes.STRING
-    
-    
+      allowNull: false
+    },
+    book_id: DataTypes.STRING
   });
 
   Reviews.associate = function(models) {

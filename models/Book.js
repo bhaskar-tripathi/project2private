@@ -2,10 +2,9 @@
 module.exports = function (sequelize, DataTypes) {
   var Book = sequelize.define('Book', {
     // Giving the Author model a name of type STRING
-    name: DataTypes.STRING,
+    title: DataTypes.STRING,
     author: DataTypes.STRING,
-    genre: DataTypes.STRING,
-    volume_id:DataTypes.STRING,
+    volume_id: DataTypes.STRING,
     isbn: DataTypes.STRING
   });
 

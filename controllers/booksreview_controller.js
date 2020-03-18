@@ -1,7 +1,7 @@
 /* eslint-disable semi */
 var express = require('express');
 var axios = require('axios');
-// var Sequelize = require('sequelize');
+var Sequelize = require('sequelize');
 var apiKey = 'AIzaSyCeM1m73twcAewk29CbTe4IJIIc4U1hQkQ';
 
 var router = express.Router();
@@ -67,6 +67,7 @@ router.get('/api/comments/:volumeId', function (req, res) {
 router.get('/details/:volumeId', function (req, res) {
   volumeId = req.params.volumeId;
   console.log(volumeId);
+  
   var queryUrl = `https://www.googleapis.com/books/v1/volumes/${volumeId}`;
   axios.get(queryUrl).then(apiResponse => {
     db.Reviews.findAll({ where: { bookid: volumeId } }).then(function (reviewData) {
@@ -75,10 +76,7 @@ router.get('/details/:volumeId', function (req, res) {
         leInfo: apiResponse.data.volumeInfo,
         reviews: reviewData
       };
-      console.log('details page');
-      console.log(hbsObject);
-      // res.render('detail', hbsObject);
-      
+
       res.render('2ndPageBookTemplate', hbsObject);
     });
   }
@@ -89,26 +87,16 @@ router.get('/details/:volumeId', function (req, res) {
 router.post('/api/comments/:volumeId', function (req, res) {
   volumeId = req.params.volumeId;
   // Update the new review comment in DB
-  db.Reviews.create({ bookid: volumeId, comment: req.body.comment, rname: req.body.name, rating: req.body.rating })
-    .then(([updbookreview, created]) => {
-      // if successfully created, reload the page
-      if (created) {
-        res.redirect(req.get('referer'));
-      }
-    })
+  db.Reviews.create({ book_id: volumeId, comments: req.body.comment, pName: req.body.name, rating: req.body.rating })
+    .then(console.log("Created!!"));
 });
 
 // Post book
 router.post('/api/book/:volumeId', function (req, res) {
   volumeId = req.params.volumeId;
   // Update the new review comment in DB
-  db.Reviews.create({ bookid: volumeId, comment: req.body.comment, rname: req.body.name, rating: req.body.rating })
-    .then(([updbookreview, created]) => {
-      // if successfully created, reload the page
-      if (created) {
-        res.redirect(req.get('referer'));
-      }
-    })
+  db.Book.create({ title: req.body.title, author: req.body.author, volume_id: volumeId, isbn: req.body.isbn })
+    .then(console.log("Created!!"));
 });
 
 // Export routes for server.js to use.
